@@ -94,10 +94,49 @@
                     <!--end:Menu content-->
                 </div>
                 @php
-                    $isActive = request()->is('application') || request()->is('user') ? 'custom-show' : '';
+                    $isActive = request()->is('slider') ? 'custom-show' : '';
                 @endphp
                 <div data-kt-menu-trigger="click"
-                    class="menu-item {{ request()->is('application') || request()->is('user') ? 'show' : '' }} {{ $isActive }} menu-accordion">
+                    class="menu-item {{ request()->is('slider') ? 'show' : '' }} {{ $isActive }} menu-accordion">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-element-7 fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Home</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ request()->is('slider') ? 'active button-active' : '' }}"
+                                href="{{ route('slider.index') }}">
+                                <span class="menu-bullet">
+                                    <i class="far fa-circle nav-icon"></i>
+
+                                </span>
+                                <span class="menu-title">Slider</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+
+                    </div>
+                    <!--end:Menu sub-->
+
+                </div>
+                @php
+                    $settingsIsActive = request()->is('application') || request()->is('user') ? 'custom-show' : '';
+                @endphp
+                <div data-kt-menu-trigger="click"
+                    class="menu-item {{ request()->is('application') || request()->is('user') ? 'show' : '' }} {{ $settingsIsActive }} menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link ">
                         <span class="menu-icon">
@@ -179,7 +218,7 @@
                 //     .attr("style", "background: inherit !important;");
                 $("[data-kt-app-layout=dark-sidebar] .app-sidebar .menu .menu-item.show>.menu-link .menu-title")
                     .attr("style", "display:none!important");
-                $(".menu-item .menu-link .menu-arrow")
+                $("[data-kt-app-layout=dark-sidebar] .app-sidebar .menu .menu-item.show>.menu-link .menu-title")
                     .attr("style", "display:none!important");
             } else {
                 $("[data-kt-app-layout=dark-sidebar] .app-sidebar .menu .menu-item.custom-show > .menu-link")

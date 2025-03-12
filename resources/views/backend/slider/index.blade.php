@@ -15,7 +15,7 @@
     @endif
 
 @section('title')
-    User
+    Slider
 @endsection
 
 <!--begin::Toolbar-->
@@ -25,14 +25,14 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
             <!--begin::Title-->
-            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">User
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Slider
             </h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('user.index') }}" class="text-muted text-hover-primary">All-User</a>
+                    <a href="{{ route('slider.index') }}" class="text-muted text-hover-primary">All-Slider</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -41,7 +41,7 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">User</li>
+                <li class="breadcrumb-item text-muted">Slider</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -58,7 +58,7 @@
     <!--begin::Content container-->
     <div id="kt_app_content_container" class="app-container container-fluid">
         {{-- add button  --}}
-        <button data-bs-toggle="modal" data-bs-target="#userCreateModal" class="btn btn-sm btn-success mb-2"><svg
+        <button data-bs-toggle="modal" data-bs-target="#sliderCreateModal" class="btn btn-sm btn-success mb-2"><svg
                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height:20px">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -67,16 +67,16 @@
                         d="m3.99 16.854-1.314 3.504a.75.75 0 0 0 .966.965l3.503-1.314a3 3 0 0 0 1.068-.687L18.36 9.175s-.354-1.061-1.414-2.122c-1.06-1.06-2.122-1.414-2.122-1.414L4.677 15.786a3 3 0 0 0-.687 1.068zm12.249-12.63 1.383-1.383c.248-.248.579-.406.925-.348.487.08 1.232.322 1.934 1.025.703.703.945 1.447 1.025 1.934.058.346-.1.677-.348.925L19.774 7.76s-.353-1.06-1.414-2.12c-1.06-1.062-2.121-1.415-2.121-1.415z"
                         fill="#ffffff"></path>
                 </g>
-            </svg> Add User
+            </svg> Add Slider
         </button>
 
         <table id="featuredProjectTitleHeading" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th>Serial ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
                     <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -85,7 +85,7 @@
 </div>
 
 
-<div class="modal fade" id="userEditModal" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
+<div class="modal fade" id="SliderEditModal" tabindex="-1" aria-labelledby="SliderEditModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content" id="modalShow"
             style="background-color: #f8f9fa; border-radius: 8px; border: 1px solid #ddd;">
@@ -94,24 +94,13 @@
     </div>
 </div>
 <!-- Custom CSS for Table Borders -->
-@include('User.create')
-<style>
-    table.dataTable td img {
-        display: block;
-        /* margin: auto; */
-        height: 80px;
-        width: 80px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #555;
-    }
-</style>
+@include('backend.slider.create')
 <script>
     $(document).ready(function() {
         $('#featuredProjectTitleHeading').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('user.getdata') }}',
+            ajax: '{{ route('slider.getdata') }}',
             columns: [{
                     data: null, // Use null to signify that this column does not map directly to any data source
                     name: 'serial_number',
@@ -123,14 +112,6 @@
                     searchable: false
                 },
                 {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
                     data: 'image',
                     name: 'image',
                     render: function(data, type, row) {
@@ -139,6 +120,14 @@
                     },
                     orderable: false,
                     searchable: false
+                },
+                {
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    data: 'short_description',
+                    name: 'short_description'
                 },
                 {
                     data: 'action',
@@ -155,11 +144,11 @@
     $(document).on('click', '.edit', function() {
         var dataId = $(this).data('id');
         $.ajax({
-            url: '/user/edit/' + dataId,
+            url: '/slider/edit/' + dataId,
             type: 'GET',
             success: function(response) {
                 $('#modalShow').html(response);
-                $('#userEditModal').modal('show');
+                $('#SliderEditModal').modal('show');
 
             }
         })

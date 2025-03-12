@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\ApplicationController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('user/distroy/{id}', [UserController::class, 'distroy'])->name('user.distroy');
     Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
+
+    Route::get('slider', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('slider/getdata', [SliderController::class, 'getdata'])->name('slider.getdata');
+    Route::get('slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('slider/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::delete('slider/distroy/{id}', [SliderController::class, 'distroy'])->name('slider.distroy');
+    Route::get('slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::put('slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
 });

@@ -146,15 +146,7 @@ License: For each use you must have a valid license purchased only from above li
         }
 
         /* Image Styling */
-        table.dataTable td img {
-            display: block;
-            /* margin: auto; */
-            height: 40px;
-            width: 40px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #555;
-        }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
