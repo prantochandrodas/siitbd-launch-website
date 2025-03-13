@@ -94,10 +94,10 @@
                     <!--end:Menu content-->
                 </div>
                 @php
-                    $isActive = request()->is('slider') ? 'custom-show' : '';
+                    $isActive = request()->is('slider') || request()->is('statistics') ? 'custom-show' : '';
                 @endphp
                 <div data-kt-menu-trigger="click"
-                    class="menu-item {{ request()->is('slider') ? 'show' : '' }} {{ $isActive }} menu-accordion">
+                    class="menu-item {{ request()->is('slider') || request()->is('statistics') ? 'show' : '' }} {{ $isActive }} menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -130,13 +130,36 @@
 
                     </div>
                     <!--end:Menu sub-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ request()->is('statistics') ? 'active button-active' : '' }}"
+                                href="{{ route('statistics.index') }}">
+                                <span class="menu-bullet">
+                                    <i class="far fa-circle nav-icon"></i>
+
+                                </span>
+                                <span class="menu-title">Statistics</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+
+                    </div>
+                    <!--end:Menu sub-->
 
                 </div>
                 @php
-                    $settingsIsActive = request()->is('application') || request()->is('user') ? 'custom-show' : '';
+                    $settingsIsActive =
+                        request()->is('application') || request()->is('social-icon') || request()->is('user')
+                            ? 'custom-show'
+                            : '';
                 @endphp
                 <div data-kt-menu-trigger="click"
-                    class="menu-item {{ request()->is('application') || request()->is('user') ? 'show' : '' }} {{ $settingsIsActive }} menu-accordion">
+                    class="menu-item {{ request()->is('application') || request()->is('social-icon') || request()->is('user') ? 'show' : '' }} {{ $settingsIsActive }} menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link ">
                         <span class="menu-icon">
@@ -152,6 +175,26 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ request()->is('social-icon') ? 'active button-active' : '' }}"
+                                href="{{ route('social.icon.index') }}">
+                                <span class="menu-bullet">
+                                    <i class="far fa-circle nav-icon"></i>
+
+                                </span>
+                                <span class="menu-title">Social-Icon</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+
+                    </div>
+                    <!--end:Menu sub-->
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion">
 

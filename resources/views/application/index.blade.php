@@ -137,6 +137,14 @@
                         </div>
 
                         <div class="form-group row mb-3">
+                            <label for="copy_right_text" class="col-md-3 col-form-label">Copyright Text:</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="copy_right_text" name="copy_right_text"
+                                    placeholder="Enter Copyright Text" value="{{ $data->copy_right_text }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
                             <label for="logo" class="col-md-3 col-form-label">Company Logo:</label>
                             <div class="col-md-9">
                                 <input type="file" class="form-control" id="logo" name="logo">

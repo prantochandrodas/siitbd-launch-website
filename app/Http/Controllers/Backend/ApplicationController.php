@@ -67,6 +67,7 @@ class ApplicationController extends Controller
         $data->address = $request->address;
         $data->about_company = $request->about_company;
         $data->phone = $request->phone;
+        $data->copy_right_text = $request->copy_right_text;
 
         $data->save();
         Alert::success('Success', 'Data deleted Successful!');
